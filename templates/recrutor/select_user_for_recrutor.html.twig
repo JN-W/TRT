@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User selection{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>User selection</h1>
+
+        <ul>
+            {% for user in availableUser %}
+                {% if user.recrutor is same as (null) %}
+                    <li>
+                        {{ user.email }}
+                        <a href="{{ path('app_recrutor_creation', {'id': user.id}) }}" class="btn btn-outline-success">Sélectionner</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}

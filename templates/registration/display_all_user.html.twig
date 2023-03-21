@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User list{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>User list</h1>
+
+        <div class="row">
+            {% for user in allUser %}
+            <div class="card m-2" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ user.email }}</li>
+                    <li class="list-group-item">{{ user.roles|join(', ') }}</li>
+                </ul>
+            </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {{ include('partial/_retour_menu.html.twig') }}
+
+  {% endblock %}

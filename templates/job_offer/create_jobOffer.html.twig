@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renseignements de l'offre d'emploi{% endblock %}
+
+{% block body %}
+    <h1>Renseignements de l'offre d'emploi</h1>
+
+    {{ form_start(jobOfferCreationForm) }}
+
+    {{ form_row(jobOfferCreationForm.Title, {
+        label: 'Intitulé du poste'
+    }) }}
+    {{ form_row(jobOfferCreationForm.Location, {
+        label: 'Lieu du poste'
+    }) }}
+    {{ form_row(jobOfferCreationForm.Detailled_description, {
+        label: 'Description détaillée du poste'
+    }) }}
+
+    <button type="submit" class="btn">Soumettre cette offre à la validation d'un consultant</button>
+
+
+    {{ form_end(jobOfferCreationForm) }}
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+
+<div class="m-5 p-5">
+    <h1>Make your choice </h1>
+
+    {% if app.user %}
+        <p>Connecté en tant que : {{ app.user.email }}</p>
+
+        {% if app.user.roles is not null %}
+            <p>Profil de l'utilisateur : {{ app.user.roles |join(', ') }}</p>
+        {% endif%}
+
+    {% else %}
+        <p>Pas d'utilisateur connecté</p>
+    {% endif %}
+
+    <h2>Log In / Log Out</h2>
+    <ul>
+{#        {% if app.user %}#}
+            <li><a href="{{ path('app_login') }}">Log In</a></li>
+{#        {% else %}#}
+            <li><a href="{{ path('app_logout') }}">Log Out</a></li>
+{#        {% endif %}#}
+    </ul>
+
+    <h2> Create new entity</h2>
+    <ul>
+        <li><a href="{{ path('app_register') }}">Créer un user</a></li>
+        <li><a href="{{ path('app_candidate_creation-selection') }}">Créer un candidat</a></li>
+        <li><a href="{{ path('app_recrutor_creation_selection') }}">Créer un recruteur</a></li>
+
+        {% if app.user and is_granted('ROLE_RECRUTOR')%}
+            <li><a href="{{ path('app_jobOffer_creation', {'id': app.user.id}) }}">Créer une offre d'emploi</a></li>
+        {% endif %}
+
+        {% if app.user and is_granted('ROLE_ADMIN')%}
+            <li><a href="{{ path('app_select_user_for_consultant_creation') }}">Créer un consultant</a></li>
+        {% endif %}
+    </ul>
+
+    <h2> Update entity</h2>
+    <ul>
+        <li><a href="{{ path('app_select_user_for_candidate_update') }}">Compléter un profil de candidat</a></li>
+        <li><a href="{{ path('app_select_user_for_recrutor_update') }}">Compléter un profil de recruteur</a></li>
+    </ul>
+
+    <h2> Consulter</h2>
+    <ul>
+        <li><a href="{{ path('app_display_all_user') }}">Liste des utilisateurs</a></li>
+        <li><a href="{{ path('app_display_validated_jobOffer') }}">Liste des offres d'emploi (validée par un consultant, postulable par un candidate)</a></li>
+        {% if app.user and is_granted('ROLE_RECRUTOR')%}
+            <li><a href="{{ path('app_recrutor_display_offers', {'id': app.user.id}) }}">Liste des offres d'emploi que vous avez postées (en tant que recrutor)</a></li>
+        {% endif %}
+    </ul>
+
+    <h2>Valider</h2>
+    <ul>
+        {% if app.user and is_granted('ROLE_CONSULTANT')%}
+            <li><a href="{{ path('app_display_jobOffer_to_validate') }}">Liste des offres d'emploi à valider</a></li>
+            <li><a href="{{ path('app_display_candidature_to_validate', {'id': app.user.id}) }}">Liste des candidatures à valider</a></li>
+        {% endif %}
+    </ul>
+
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Job Offer to validate list{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>Job Offer to validate list</h1>
+
+        <div class="row">
+            {% for jobOffer in JobOffers %}
+                <div class="card m-2" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ jobOffer.Title }}</li>
+                        <li class="list-group-item">{{ jobOffer.Location }}</li>
+                        <li class="list-group-item">{{ jobOffer.detailledDescription }}</li>
+                        {% if app.user and is_granted('ROLE_CONSULTANT')%}
+{#                        <li class="list-group-item">#}
+{#                            <div class=" form-switch">#}
+{#                                <input class="form-check-input jobOffer-switch " type="checkbox" role="switch" id="" {{ (jobOffer.validated) ? 'checked' : '' }} data-offer="{{ jobOffer.id }}" data-user="{{ app.user.id }}">#}
+{#                                <a class="jobOffer-switch"  {{ (jobOffer.validated) ? 'checked' : '' }} data-offer="{{ jobOffer.id }}" data-user="{{ app.user.id }}">Valider</a>#}
+{#                            </div>#}
+{#                        </li>#}
+
+                            <li>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input jobOffer-switch" type="checkbox" role="switch" id="" {{ (jobOffer.validated) ? 'checked' : '' }} data-offer="{{ jobOffer.id }}" data-user="{{ app.user.id }}">
+                                </div>
+                            </li>
+
+
+                        {% endif %}
+                    </ul>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {{ include('partial/_retour_menu.html.twig') }}
+
+{% endblock %}

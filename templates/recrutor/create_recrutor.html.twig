@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création recruteur{% endblock %}
+
+{% block body %}
+    <h1>Création recruteur</h1>
+
+    {{ form_start(recrutorCreationForm) }}
+
+    {{ form_row(recrutorCreationForm.enterprise_name, {
+        label: 'Nom de votre entreprise'
+    }) }}
+
+    {{ form_row(recrutorCreationForm.enterprise_address, {
+        label: 'Adresse de votre entreprise'
+    }) }}
+
+
+    {{ form_end(recrutorCreationForm) }}
+{% endblock %}

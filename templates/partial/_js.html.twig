@@ -1,0 +1,23 @@
+
+    {# Webpack mis d'office à la création du projet symfony ??  #}
+    {#{{ encore_entry_script_tags('app') }}#}
+
+    {# Ajout jquery via CDN#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>#}
+
+    {# Essai d'autres sources pour jquery en debug#}
+    <script src="{{asset('js/jquery.js')}}"></script>
+
+
+    {# Ajout bundle bootstrap  #}
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+
+    {# Ajout bundle bootstrap using CDN #}
+    {# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>#}
+
+
+    {#script pour jquery d'un autre site d'exemple#}
+    {# <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>#}
+
+    {# Ajout de mes scripts  #}
+    <script src="{{asset('js/script.js')}}"></script>

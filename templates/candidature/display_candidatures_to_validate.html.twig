@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidatures à valider{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>Candidatures to validate</h1>
+
+        <div class="row">
+            {% for candidature in candidatures %}
+                <div class="card m-2" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ candidature.candidate }}</li>
+
+                        {% if app.user and is_granted('ROLE_CONSULTANT')%}
+                            <li class="list-group-item">
+                                <div class=" form-switch">
+                                    <input class="form-check-input candidature-switch " type="checkbox" role="switch" id="" {{ (candidature.validated) ? 'checked' : '' }} data-offer="{{ jobOffer.id }}" data-user="{{ app.user.id }}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {{ include('partial/_retour_menu.html.twig') }}
+
+{% endblock %}

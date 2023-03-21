@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validated job Offer list{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>Validated job Offer list</h1>
+
+        <div class="row">
+            <h2> Vous pouvez postuler à ces offres</h2>
+            {% for jobOffer in JobOffers %}
+                <div class="card m-2" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ jobOffer.Title }}</li>
+                        <li class="list-group-item">{{ jobOffer.Location }}</li>
+                        <li class="list-group-item">{{ jobOffer.detailledDescription }}</li>
+                        {%  if app.user and is_granted("ROLE_CANDIDATE") %}
+                            <button class="apply-to-offer" type="button" data-offer="{{ jobOffer.id }}" data-user="{{ app.user.id }}">Postuler</button>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <h2> Vous avez déjà postulé à ces offres</h2>
+            {% for alreadyPostulated in AlreadyPostulated %}
+                <div class="card m-2" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ alreadyPostulated.Title }}</li>
+                        <li class="list-group-item">{{ alreadyPostulated.Location }}</li>
+                        <li class="list-group-item">{{ alreadyPostulated.detailledDescription }}</li>
+                        {%  if app.user and is_granted("ROLE_CANDIDATE") %}
+                            <button class="cancel-application" type="button" data-offer="{{ alreadyPostulated.id }}" >Annuler la candidature</button>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {{ include('partial/_retour_menu.html.twig') }}
+
+{% endblock %}

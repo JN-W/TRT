@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidateController!{% endblock %}
+
+{% block body %}
+    <div class="m-5 p-5">
+        <h1>Make your choice </h1>
+
+
+        <ul>
+            <li><a href="{{ path('app_select_user') }}">Créer un candidat depuis un compte utilisateur existant</a></li>
+            <li><a href="{{ path('app_register') }}">Créer un candidat avec un nouveau compte utilisateur</a></li>
+        </ul>
+    </div>
+{% endblock %}

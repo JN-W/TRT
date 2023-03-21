@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offers from recrutor{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1>Offers posted by you</h1>
+
+        <div class="row">
+            {% for jobOffer in JobOffers %}
+                <div class="card m-2" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ jobOffer.Title }}</li>
+                        <li class="list-group-item">{{ jobOffer.Location }}</li>
+                        <li class="list-group-item">{{ jobOffer.detailledDescription }}</li>
+                        <li class="list-group-item"><a href="{{ path('app_candidature_display', {'id' : jobOffer.id}) }}">Consulter les candidatures à cette offre</a></li>
+
+                    </ul>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {{ include('partial/_retour_menu.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renseignements du candidat{% endblock %}
+
+{% block body %}
+    <h1>Renseignements du candidat</h1>
+
+    {{ form_start(partnerCreationForm) }}
+
+    {{ form_row(partnerCreationForm.Firstname, {
+        label: 'Prénom'
+    }) }}
+    {{ form_row(partnerCreationForm.Lastname, {
+        label: 'Nom'
+    }) }}
+{#            <button type="submit" class="btn">Enregistrer ce candidat</button>#}
+
+
+    {{ form_end(partnerCreationForm) }}
+{% endblock %}
